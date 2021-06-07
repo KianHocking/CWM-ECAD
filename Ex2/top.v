@@ -29,6 +29,6 @@ module doorbell(
     
     wire out;	
 
-    assign #5 out = (sel)? b: a;                 
+    assign #5 out = sel? b: a;                 
       
 endmodule
