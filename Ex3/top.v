@@ -20,23 +20,41 @@
 
 module monitor (rst, clk, change, on_off, counter_out);
 
- input rst, clk, change, on_off;
- output reg[7:0] counter_out;
+
+input rst, clk, change, on_off;
+output reg[7:0] counter_out;
+
+// set counter to zero on first startup
+initial begin
+	counter_out <= 0;
+end
+
                     
     //Todo: add registers and wires, if needed
 
     //Todo: add user logic
-    always @(posedge rst)
-    begin
-	counter_out <= 0;
-    end
+
     always @(posedge clk)
     begin
-	 if(change)
-	  if(on_off)
-	   counter_out <= counter_out + 1;
-	  else 
-	   counter_out <= counter_out - 1;
+    
+       //reset
+	   if(rst) begin
+		  counter_out <= 0;
+	   end
+	   
+	   //increment appropriately when change == 1
+	   else
+	   if(change) begin
+	 
+		  if(on_off) begin
+			 counter_out <= counter_out + 1;
+		  end
+		
+	  	  else begin 
+	   		 counter_out <= counter_out - 1;
+	  	  end
+	  	
+	   end
     end
 	  
       
