@@ -21,8 +21,9 @@ module lights_selector(clk, sel, rst, button, light);
 input clk, sel, rst, button;
 output[23:0] light;
 
-reg[2:0] colour;
-reg[23:0] rgb;
+wire[2:0] colour;
+wire[23:0] rgb;
+wire[23:0] light;
 
 LEDs lights(
 	.clk (clk),
@@ -38,12 +39,7 @@ colour_converter converter(
 	.rgb (rgb)
 	);
 
-mux Mux(
-	.a (24'hffffff),
-	.b (rgb),
-	.sel (sel),
-	.out (light)
-	);
+assign light = sel? rgb: 24'hffffff;
 
 endmodule
 
