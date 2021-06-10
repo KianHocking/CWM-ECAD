@@ -23,16 +23,14 @@ initial
          #(CLK_PERIOD/2) clk=~clk;
      end
 
-//section to initialise variables, switch the button on and off and switch select on and off.
+//section to initialise variables, switch the button, select and reset on and off
 initial begin
 
 	err = 0;
 	sel = 1;
 	rst = 1;
 	prev_light = 24'h0000ff;
-	
-    button = 0;
-	//prev_light = 24'h0
+	button = 0;
 	
 	#40 rst = 0;
 	#40 button = 1;
