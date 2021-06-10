@@ -15,6 +15,7 @@ reg clk, err, enable;
 reg[2:0] colour;
 wire[23:0] rgb; 
 reg[23:0] prev_rgb;
+reg[23:0] possible_rgb_values [7:0];
 
 //clock generation
 initial
@@ -27,6 +28,16 @@ initial
 //section to initialise variables and turn on enable after a little while
 initial begin
 
+    //storing values from mem.ceo file. index of the array is 'colour' and corresponding rgb value is stored in it
+    possible_rgb_values[0] = 24'h000000;
+    possible_rgb_values[1] = 24'h0000FF;
+    possible_rgb_values[2] = 24'h00FF00;
+    possible_rgb_values[3] = 24'h00FFFF;
+    possible_rgb_values[4] = 24'hFF0000;
+    possible_rgb_values[5] = 24'hFF00FF;
+    possible_rgb_values[6] = 24'hFFFF00;
+    possible_rgb_values[7] = 24'hFFFFFF;
+    
 	err = 0;
 	enable = 0;
 	colour = 0;	
@@ -66,6 +77,12 @@ initial begin
                 $display("Test Failed, rgb changed when enable is not active");
                 err = 1;
         end
+        
+        //checking if the rgb value is the correct one for the given colour
+        else if((enable)&&(rgb != possible_rgb_values[colour])) begin
+                $display("Test Failed, rgb not assigned correct colour");
+                err = 1;
+        end
     
         //sets the previous rgb value to the rgb value for error checking at the next rgb value.
 		prev_rgb = rgb;
@@ -76,7 +93,7 @@ end
 
 //Finish test, check for success
 initial begin
-        #(80*CLK_PERIOD)
+        #(100*CLK_PERIOD)
         
         if (err==0) begin
           $display("***TEST PASSED! :) ***");
