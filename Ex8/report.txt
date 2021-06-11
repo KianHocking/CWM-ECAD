@@ -1,6 +1,6 @@
 Q1. --------------------
 
-There were 3 warnings. None were critical.
+There were 3 warnings on the synthesis, none on the implementation. None were critical.
 
 They were:
 
