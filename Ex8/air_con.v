@@ -14,7 +14,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 `timescale 1ns / 100ps
 
-module AC(clk, temperature, heating, cooling);
+module air_con(clk, temperature, heating, cooling);
 
 input clk;
 input[4:0] temperature;

@@ -50,7 +50,7 @@ module top(
 
 //Add logic here
 
-AC air_con(
+air_con air_con(
 	.clk (clk), 
 	.temperature (temperature), 
 	.heating (heating), 
