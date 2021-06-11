@@ -15,13 +15,14 @@ module top_tb (
 parameter CLK_PERIOD = 10;
 
 // n is a variable used to track whether we are forcing the temperature to increase or decrease. This forced change in temperature is for testing the heating and cooling switching on and off
-reg clk, err, n;
+reg clk_p, err, n;
+wire clk_n;
 wire heating, cooling; 
 reg[4:0] temperature;
 
 //clock generation
 initial begin   	
-		clk_p = 1'b0;
+		clk_p = 1'b1;
 		forever begin
 		#(CLK_PERIOD/2) clk_p=~clk_p;
 		end
