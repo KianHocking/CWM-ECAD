@@ -1,0 +1,14 @@
+Inputs: --------------------------------------------------------------------
+
+clk               
+rst_lights            // to reset LED colour
+button                // for changing the LED colour
+temperature [4:0]     // 5 bit temperature from sensor, for air con
+blind_switches [1:0]  // 2 bit input from switches to control the blinds
+
+Outputs: --------------------------------------------------------------------
+
+light [23:0]          // output 24 bit (3x8 bit) colour for RGB LEDs
+heating               // to turn on/off heating
+cooling               // to turn on/off cooling
+blind_position        // to tell the blind motors what position to move to
